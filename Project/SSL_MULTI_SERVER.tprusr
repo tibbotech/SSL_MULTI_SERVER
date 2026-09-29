@@ -1,0 +1,14 @@
+[project]
+watch=
+[file1]
+line=0
+cursor=641
+opened=yes
+breakpoints=
+[file2]
+line=0
+cursor=984
+opened=active
+breakpoints=
+[file3]
+opened=no

@@ -1,0 +1,33 @@
+'DEFINES-------------------------------------------------------------
+
+'--- Network (static IP) ---
+const DEVICE_IP   = "192.168.1.218"
+const DEVICE_MASK = "255.255.255.0"
+const DEVICE_GW   = "192.168.1.1"
+
+'--- TLS Server ---
+'Number of simultaneous TLS server connections.
+'The SSL pool supports up to ~7 concurrent sessions; keep this value at 6 or below.
+'Sockets 0 to NUM_TLS_SOCKS-1 are used directly (no socket allocation library needed).
+const NUM_TLS_SOCKS = 6
+
+'TCP port the device listens on for incoming TLS connections.
+#define TLS_LISTEN_PORT "8443"
+
+'Socket buffer sizes in pages (1 page = 256 bytes).
+'6 pages (1536 bytes) is sufficient for ECDSA P-256 certificates.
+'Increase to 8 pages (2048 bytes) if using RSA 2048 certificates.
+#define TLS_RX_BUFF 6
+#define TLS_TX_BUFF 6
+
+'ROM file name: server certificate DER + private key DER, concatenated.
+'See the article "Inbound TLS: Setting Up a TLS Server" for generation steps.
+#define CERT_BUNDLE "server_bundle.der"
+
+'INCLUDES------------------------------------------------------------
+
+'DECLARATIONS--------------------------------------------------------
+declare sub boot()
+declare sub tls_server_event(newstate as pl_sock_state, newstatesimple as pl_sock_state_simple)
+declare sub tls_server_echo()
+declare function count_active() as byte
