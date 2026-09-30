@@ -33,6 +33,5 @@ location=
 path=server_bundle.der
 type=binary
 format=
-condition=
 locked=no
 location=project
